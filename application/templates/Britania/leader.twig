@@ -1,0 +1,37 @@
+{% extends "html.twig" %}
+
+{% block content %}
+<h1>{{ lang['leaders'] }}</h1>
+<ul id="breadcrump">
+  <li><a href="{{ url_for('home') }}">{{ lang['home'] }}</a></li>
+  <li>{{ lang['leaders'] }}</li>
+</ul>
+
+<div id="middle">
+
+    <h2>{{ lang['leader_pve_title'] }}</h2>
+    <table class="ladder">
+        <thead>
+            <tr>
+                <th width="50px" class="c">#</th>
+                <th>{{ lang['leader_player_name'] }}</th>
+                <th>{{ lang['leader_player_class'] }}</th>
+                <th class="c">{{ lang['leader_player_level'] }}</th>
+                <th class="r">{{ lang['leader_player_exp'] }}</th>
+            </tr>
+        </thead>
+        <tbody>
+{% for player in players %}
+    {% set position = position + 1 %}
+    <tr>
+    <td class="c"><span class="rang">{{ position }}</span></td>
+    <td>{{ player.Name }}</td>
+    <td><i>{% for class in classes %}{% if (class.Value.Id == player.ClassId) %}{{ class.Value.Name }}{% endif %}{% endfor %}</i></td>
+    <td class="c">{{ player.Level }}</td>
+    <td class="r"><b>{{ player.Exp }}/{{ player.Exp + player.ExperienceToNextLevel }}</b></td>
+    </tr>
+  {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

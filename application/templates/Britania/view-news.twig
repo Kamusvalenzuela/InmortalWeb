@@ -1,0 +1,24 @@
+{% extends "html.twig" %}
+
+{% block content %}
+<h1>{{ lang['news'] }}</h1>
+<ul id="breadcrump">
+  <li><a href="{{ url_for('home') }}">{{ lang['home'] }}</a></li>
+  <li>{{ pageTitle }}</li>
+</ul>
+<div id="news" class="read">
+        <article>
+            <div class="header" style="background-image:url('{{ globalAssetsPath }}/news/{{ img_url }}');">
+                <h2><img src="{{ assetsPath }}/img/i_news.png"> {{ pageTitle }}</h2>
+            </div>
+
+<p>{{ content | raw }}</p>
+
+            <div class="footer">
+                {{ lang['news_posted_on'] }} <strong>{{ date }}</strong> {{ lang['news_by'] }} <strong>{{ author }}</strong>.
+            </div>
+        </article>
+        <div class="clear"></div>
+    </div>
+
+{% endblock %}
